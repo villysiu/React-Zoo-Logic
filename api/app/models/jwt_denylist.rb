@@ -1,4 +1,4 @@
-class User < ApplicationRecord
-    devise :database_authenticatable,
-           :jwt_authenticatable, jwt_revocation_strategy: JwtDenylist
+class JwtDenylist < ApplicationRecord
+    include Devise::JWT::RevocationStrategies::Denylist
+    self.table_name = 'jwt_denylist'
 end
