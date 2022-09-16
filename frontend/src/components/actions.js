@@ -9,18 +9,17 @@ export const login=async (userinfo, setCurrUser, setErrorMsg)=>{
             },
             body: JSON.stringify(userinfo)
         })
-        if(!response.ok) throw Error
         const data=await response.json()
-        
-        console.log(response.headers.get('Authorization'))
-        console.log(data)
+        if(!response.ok){ 
+            throw data.error
+        }
+       
         localStorage.setItem('token', response.headers.get('Authorization'))
         setCurrUser(data)
         setErrorMsg(null)
     } catch (error) {
-        console.log(error)
-        // setErrorMsg(error)
-        // setCurrUser(null)
+        setErrorMsg(error)
+        setCurrUser(null)
     }
 }
 export const signup=async (userinfo, setCurrUser, setErrorMsg)=>{
@@ -33,17 +32,15 @@ export const signup=async (userinfo, setCurrUser, setErrorMsg)=>{
             },
             body: JSON.stringify(userinfo)
         })
-        if(!response.ok) throw Error
+        
         const data=await response.json()
-        console.log(response.headers.get('Authorization'))
-        console.log(data)
+        if(!response.ok) throw data.error
         localStorage.setItem('token', response.headers.get('Authorization'))
         setCurrUser(data)
         setErrorMsg(null)
     } catch (error) {
-        console.log(error.error)
-        // setErrorMsg(error)
-        // setCurrUser(null)
+        setErrorMsg(error)
+        setCurrUser(null)
     }
 }
 export const logout=async (user_id, setCurrUser, setErrorMsg)=>{
@@ -56,14 +53,13 @@ export const logout=async (user_id, setCurrUser, setErrorMsg)=>{
             },
             body: JSON.stringify(user_id)
         })
-        if(!response.ok) throw Error
-        // /const data=await response.json()
+        const data=await response.json()
+        if(!response.ok) throw data.error
         localStorage.removeItem('token')
         setCurrUser(null)
         setErrorMsg(null)
 
     } catch (error) {
-        console.log(error)
-        // setErrorMsg(error)
+        setErrorMsg(error)
     }
 }
