@@ -43,13 +43,14 @@ export const signup=async (userinfo, setCurrUser, setErrorMsg)=>{
         setCurrUser(null)
     }
 }
-export const logout=async (user_id, setCurrUser, setErrorMsg)=>{
+export const logout=async (user_id, setCurrUser)=>{
     try {
         const response=await fetch(url+"logout", {
             method: 'delete',
             headers: {
-                'centent-type': 'application/json',
-                'authorization': localStorage.getItem('token')
+                'Content-Type': 'application/json',
+                'Accept': 'application/json',
+                'Authorization': localStorage.getItem('token')
             },
             body: JSON.stringify(user_id)
         })
@@ -57,9 +58,29 @@ export const logout=async (user_id, setCurrUser, setErrorMsg)=>{
         if(!response.ok) throw data.error
         localStorage.removeItem('token')
         setCurrUser(null)
-        setErrorMsg(null)
 
     } catch (error) {
-        setErrorMsg(error)
+        console.log(error)
+    }
+}
+export const getCurrUser=async(setCurrUser)=>{
+    try {
+        const response=await fetch(url+"private/get_current_user",{
+            method: 'get',
+            headers: {
+                'Content-Type': 'application/json',
+                'Authorization': localStorage.getItem('token'),
+            }
+        })
+        const data=await response.json()
+        console.log(data)
+        if(!response.ok){
+            if(response.status==="401")
+                throw response.text()
+             throw data.error}
+        setCurrUser(data)
+
+    } catch (error) {
+        console.log(error)
     }
 }
