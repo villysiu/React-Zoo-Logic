@@ -1,7 +1,7 @@
 body {
   width: 100%;
   height: 100%;
-  overflow: hidden;
+  /* overflow: hidden; */
 
 
   margin: 0;
@@ -17,6 +17,30 @@ code {
     monospace;
 }
 
-/* #user {
-  height: 300px;
+/* table, tr, td {
+  border: 1px solid black;
+  border-collapse: collapse;
 } */
+tr,td{
+  width: 118.75px;
+  height: 118.75px;
+
+}
+.circle {
+  position: relative;
+  height: 100px;
+  width: 100px;
+  background-color: blue;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.circle img {
+ width: 60px;
+ height: 60px;
+}
+.tfoot img {
+  width: 40px;
+  height: 40px;
+ }

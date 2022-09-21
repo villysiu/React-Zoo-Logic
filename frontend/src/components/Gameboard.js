@@ -1,34 +1,16 @@
-import Container from 'react-bootstrap/Container';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
-
-const Gameboard=()=>{
-    return (
-      <div>game</div>
-    //     <Container>
-    //   <Row>
-    //     <Col xs={{ span: 3, offset: 3 }} >1 of 3</Col>
-    //     <Col xs={3} >2 of 3</Col>
-    //     <Col xs={3} >3 of 3</Col>
-    //   </Row>
-    //   <Row className="mt-0">
-    //     <Col className="mt-0" xs={3}>
-    //       <Row className="mt-0">
-    //         <Col>1 of 3</Col>
-    //       </Row>
-    //       <Row className="mt-0">
-    //         <Col>1 of 3</Col>
-            
-    //       </Row>
-    //       <Row className="mt-0">
-    //          <Col>1 of 3</Col>
-    //       </Row>
-    //     </Col>
-    //     <Col item xs={9}>
-    //     game board
-    //     </Col>
-    //   </Row>
-    // </Container>
-     )
+import { forwardRef } from "react";
+import {Container, Row} from 'react-bootstrap'
+import GameToken from './GameToken'
+const Gameboard=(props, ref )=>{
+    const {board,checkBoard, tokenLeft} = props
+    return(
+        <Container fluid>
+            <form ref={ref} >
+            <Row>
+                {board.map((animalId, idx)=><GameToken key={idx} pos={idx} animalId={animalId} checkBoard={checkBoard} tokenLeft={tokenLeft}/> )}
+                
+            </Row></form>
+        </Container>
+    )
 }
-export default Gameboard
+export default forwardRef(Gameboard);
