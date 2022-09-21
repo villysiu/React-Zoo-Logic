@@ -2,8 +2,6 @@ import {Container, Row, Col }  from 'react-bootstrap'
 import { Outlet } from 'react-router-dom'
 
 const GameContainer=()=>{
-   
-    // console.log(games)
     return(
         <Container>
             <Row className="justify-content-md-center">

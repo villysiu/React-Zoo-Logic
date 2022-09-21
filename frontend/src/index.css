@@ -10,6 +10,7 @@ body {
     sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
+
 }
 
 code {
@@ -17,10 +18,10 @@ code {
     monospace;
 }
 
-/* table, tr, td {
-  border: 1px solid black;
-  border-collapse: collapse;
-} */
+html {
+  font-size: 1.5em;
+  font-weight: bold;
+}
 tr,td{
   width: 118.75px;
   height: 118.75px;
@@ -40,7 +41,7 @@ tr,td{
  width: 60px;
  height: 60px;
 }
-.tfoot img {
+/* .tfoot img {
   width: 40px;
   height: 40px;
- }
+ } */

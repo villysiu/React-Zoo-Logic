@@ -8,7 +8,7 @@ const GameboardHeader=({animalId, count})=>{
         <>
 
         {count}
-         <img src={url} width='80px' height='80px' alt={animal}></img>
+         <img src={url} width='60px' height='60px' alt={animal}></img>
      
         </>
     )
