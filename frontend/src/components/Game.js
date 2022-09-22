@@ -7,51 +7,70 @@ import TokenLeft from './TokenLeft'
 import WonModal from "./WonModal.js";
 import { evalTokens, matchSolution } from "./functions.js";
 import { Button } from "react-bootstrap";
-const Game =()=>{
-    
+import {Container, Row, Col }  from 'react-bootstrap'
+import { updateScore } from "./actions.js";
+
+const Game =({currUserLevel})=>{
+    console.log("Game re rendered")
     const params = useParams();
-    const game=getGame(parseInt(params.gameId, 10))
+    const paramGameId=parseInt(params.gameId, 10)
+
+    const game=getGame(paramGameId)
+    const [currboard, setCurrboard] = useState(game.board)
     const [tokenLeft, setTokenLeft] = useState(evalTokens(game.board))
     const [modalShow, setModalShow] = useState(false);
-    const [currboard, setCurrboard] = useState(game.board)
+    
     
     useEffect(()=>{
-        console.log(currboard)
+        // console.log(currboard)
         setTokenLeft(evalTokens(currboard))
-        if(matchSolution(currboard, game.solution)){
-            console.log("you won")
+        if(matchSolution(currboard, game.solutions)){
+    
             setModalShow(true)
+            if(currUserLevel<game.id)
+                updateScore(1, game.id)
         }    
-    },[currboard, game.solution])
+    },[currboard, game.solutions, game.id, currUserLevel])
     return (
-        <div>
-            <WonModal show={modalShow} gid={params.gameId} />
-            <table width="480x" height="480px" cellSpacing="0" cellPadding="0">
-            <thead><tr>
-                <td><h4>GAME {game.id}</h4></td>
-                {game.header.slice(0,3).map((item, idx)=><td key={idx} align="center"><GameboardHeader  {...item} /></td>)}
-            </tr></thead>
-            
-            <tbody>
-                <tr>
-                <td>
-                    <table><tbody>
-                    {game.header.slice(3).map((item,idx)=><tr key={idx}><td><GameboardHeader {...item} /></td></tr>)}                
-                    </tbody></table>
-                </td>
-                <td colSpan="3">
-                    <Gameboard board ={currboard} setCurrboard={setCurrboard} fixed={game.fixed} tokenLeft={tokenLeft} />
-                </td>
-                </tr>
-            </tbody>
-            <tfoot>
-                <TokenLeft tokenLeft={tokenLeft} />
-                <tr><td> <Button  onClick={()=>setCurrboard(game.board)} >Reset </Button> </td></tr>
-
-            </tfoot>
-            </table>
-        </div>
         
+        <Container>
+            <WonModal show={modalShow} setShow={setModalShow} gid={params.gameId} />
+            <Row>
+            
+                <Col xs={12} md={1}>GAME {game.id}</Col>
+                <Col xs={12} md={8} >
+                <table className="mx-auto" width="480x" height="480px" cellSpacing="0" cellPadding="0">
+                    <thead>
+                        <tr>
+                            <th></th>
+                            {game.header.slice(0,3).map((item, idx)=>
+                            <th key={idx} style={{textAlign: "center"}}><GameboardHeader  {...item} /></th>)}
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                        <td>
+                            <table><tbody>
+                            {game.header.slice(3).map((item,idx)=><tr key={idx}><th><GameboardHeader {...item} /></th></tr>)}                
+                            </tbody></table>
+                        </td>
+                        <td colSpan="3">
+                            <Gameboard board ={currboard} setCurrboard={setCurrboard} fixed={game.fixed} tokenLeft={tokenLeft} />
+                        </td>
+                        </tr>
+                    </tbody>
+                </table>
+                </Col>
+                <Col xs={12} md={3}>
+                    <Container>
+                        <Row xs={4} md={1}>         
+                            <TokenLeft tokenLeft={tokenLeft} />
+                            <Col ><Button  onClick={()=>setCurrboard(game.board)} >Reset </Button></Col>
+                        </Row>
+                    </Container>
+                </Col>
+            </Row>
+        </Container>
     )
 }
 export default Game

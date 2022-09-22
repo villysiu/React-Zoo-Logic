@@ -27,11 +27,10 @@ export const evalTokens=(board)=>{
         ]
     )
 }
-export const matchSolution =( currBoard, solution )=>{
-    for(let i=0;i<solution.length;i++){
-        if(currBoard[i]!==solution[i]) 
-            return false
-        
+export const matchSolution =( currBoard, solutions )=>{
+    for(const soln of solutions){
+        if(JSON.stringify(soln)===JSON.stringify(currBoard))
+            return true
     }
-    return true
+    return false
 }

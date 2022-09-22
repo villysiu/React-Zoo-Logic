@@ -18,7 +18,7 @@ function Header({currUser, setCurrUser}){
         {currUser && 
             <DropdownButton align="end" title={currUser.username} id="dropdown-menu-align-end">
   
-                <Dropdown.Item as={Link} to="/games">Game</Dropdown.Item>
+                <Dropdown.Item as={Link} to="/gamelist">Game</Dropdown.Item>
                 <Dropdown.Item as={Link} to="/score">Score</Dropdown.Item>
                 <Dropdown.Divider />
                 <Dropdown.Item as={Button} onClick={handleLogout}>Logout</Dropdown.Item>

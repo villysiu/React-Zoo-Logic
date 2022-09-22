@@ -25,7 +25,7 @@ export const login=async (userinfo, setCurrUser, setErrorMsg)=>{
 export const signup=async (userinfo, setCurrUser, setErrorMsg)=>{
     try {
         const response=await fetch(url+"signup", {
-            method: 'post',
+            method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
                 'Accept': 'application/json',
@@ -46,7 +46,7 @@ export const signup=async (userinfo, setCurrUser, setErrorMsg)=>{
 export const logout=async (user_id, setCurrUser)=>{
     try {
         const response=await fetch(url+"logout", {
-            method: 'delete',
+            method: 'DELETE',
             headers: {
                 'Content-Type': 'application/json',
                 'Accept': 'application/json',
@@ -66,7 +66,7 @@ export const logout=async (user_id, setCurrUser)=>{
 export const getCurrUser=async(setCurrUser)=>{
     try {
         const response=await fetch(url+"private/get_current_user",{
-            method: 'get',
+            method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
                 'Authorization': localStorage.getItem('token'),
@@ -81,6 +81,40 @@ export const getCurrUser=async(setCurrUser)=>{
         setCurrUser(data)
 
     } catch (error) {
+        console.log(error)
+    }
+}
+export const getAllScore=async(setScores)=>{
+    try {
+        const response=await fetch(url+"users")
+        const data=await response.json()
+        console.log(data)
+        if(!response.ok) throw data.error
+        setScores(data)
+    } catch (error) {
+        console.log(error)
+    }
+}
+export const updateScore=async (userId, level)=>{
+    try{
+        const response=await fetch(`${url}users/${userId}`, {
+            method: 'PATCH',
+            headers: {
+                'content-type': 'application/json',
+                'Accept': 'application/json',
+                'Authorization': localStorage.getItem('token'),
+            },
+            body: JSON.stringify({
+                level: level
+            })
+        })
+        const data = await response.json();
+        if(!response.ok)
+            throw data.error()
+        console.log(data.message)
+       
+
+    } catch (error){
         console.log(error)
     }
 }
