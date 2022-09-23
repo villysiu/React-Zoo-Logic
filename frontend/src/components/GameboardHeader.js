@@ -1,6 +1,6 @@
 
+import {memo } from 'react'
 import { getUrl } from './functions'
-
 const GameboardHeader=({animalId, count})=>{
     console.log("header too!!hahahahah")
     const {animal, url}=getUrl(animalId)
@@ -15,4 +15,4 @@ const GameboardHeader=({animalId, count})=>{
         </>
     )
 }
-export default GameboardHeader
+export default memo(GameboardHeader) 

@@ -11,10 +11,8 @@ const TokenLeft =({tokenLeft})=>{
         )
     }
     return (
-        // <tr><td colSpan="4">
         <>
             {tokenLeft.map((count, idx)=><Col key={idx} ><TokenLeftDisplay animalId={idx+1} count={count}  /></Col> )}          
-        {/* // </td></tr> */}
         </>
     )
 }

@@ -8,13 +8,14 @@ import { logout } from './actions'
 import { Link } from "react-router-dom";
 
 function Header({currUser, setCurrUser}){
+  console.log("header re rendr")
   const handleLogout=()=>{
     logout(currUser.id, setCurrUser)
   }
   return (
     <Navbar bg="light" expand="false">
       <Container>
-        <Navbar.Brand as={Link} to="/games/1"><h1>Zoo Logic</h1></Navbar.Brand>
+        <Navbar.Brand as={Link} to={currUser? "/games/1"+(currUser.level+1) : "/"}><h1>Zoo Logic</h1></Navbar.Brand>
         {currUser && 
             <DropdownButton align="end" title={currUser.username} id="dropdown-menu-align-end">
   

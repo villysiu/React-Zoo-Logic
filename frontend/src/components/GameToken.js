@@ -1,7 +1,10 @@
 import { Col } from "react-bootstrap"
 import { getUrl } from "./functions"
+
 const GameToken=({ pos, animalId, setCurrboard, fixed, tokenLeft})=>{
     console.log("button re rebdered")
+
+
     const animalObj=getUrl(animalId)
    
     const handleClick=(e)=>{
@@ -31,6 +34,5 @@ const GameToken=({ pos, animalId, setCurrboard, fixed, tokenLeft})=>{
             </div>
         </Col>
     )
-    
 }
 export default GameToken

@@ -27,10 +27,19 @@ export const evalTokens=(board)=>{
         ]
     )
 }
-export const matchSolution =( currBoard, solutions )=>{
-    for(const soln of solutions){
-        if(JSON.stringify(soln)===JSON.stringify(currBoard))
-            return true
+export const matchSolution =( currBoard, header )=>{
+    const grid=[
+          [currBoard[0], currBoard[3],currBoard[6]],
+          [currBoard[1], currBoard[4],currBoard[7]],
+          [currBoard[2], currBoard[5],currBoard[8]],
+          [currBoard[0], currBoard[1],currBoard[2]],
+          [currBoard[3], currBoard[4],currBoard[5]],
+          [currBoard[6], currBoard[7],currBoard[8]] ]
+    
+    for(let i=0;i<6;i++){
+        let {animalId, count}=header[i]
+        if(grid[i].filter(a=>a===animalId).length!==count)
+            return false
     }
-    return false
+    return true
 }

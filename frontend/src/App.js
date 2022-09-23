@@ -27,11 +27,11 @@ function App() {
                 <Routes>
                 <Route exact path='/games/:gameId' element={<GameRoute currUserLevel={currUser.level}/>}>
                         
-               <Route path="/games/:gameId" element={<Game currUserLevel={currUser.level}  />} />
-                    </Route>
-                  <Route path="/score" element={<Score />} />
-                  <Route path="/gamelist" element={<GameList currUserLevel={currUser.level} />} />
-                  <Route path="*" element={<Navigate to={"/games/"+(currUser.level+1)} replace />} />
+                    <Route path="/games/:gameId" element={<Game currUserLevel={currUser.level}  />} />
+                </Route>
+                <Route path="/score" element={<Score />} />
+                <Route path="/gamelist" element={<GameList currUserLevel={currUser.level} />} />
+                <Route path="*" element={<Navigate to={"/games/"+(currUser.level+1)} replace />} />
                   
                 </Routes>
             </>
