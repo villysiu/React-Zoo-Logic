@@ -2,7 +2,7 @@ const url='http://localhost:3000/'
 export const login=async (userinfo, setCurrUser, setErrorMsg)=>{
     try {
         const response=await fetch(url+"login", {
-            method: 'post',
+            method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
                 'Accept': 'application/json',
@@ -13,7 +13,6 @@ export const login=async (userinfo, setCurrUser, setErrorMsg)=>{
         if(!response.ok){ 
             throw data.error
         }
-       
         localStorage.setItem('token', response.headers.get('Authorization'))
         setCurrUser(data)
         setErrorMsg(null)
@@ -63,7 +62,8 @@ export const logout=async (user_id, setCurrUser)=>{
         console.log(error)
     }
 }
-export const getCurrUser=async(setCurrUser)=>{
+export const getCurrUser=async(setCurrUser, setLoading)=>{
+    setLoading(true)
     try {
         const response=await fetch(url+"private/get_current_user",{
             method: 'GET',
@@ -73,22 +73,23 @@ export const getCurrUser=async(setCurrUser)=>{
             }
         })
         const data=await response.json()
-        console.log(data)
         if(!response.ok){
-            if(response.status==="401")
-                throw response.text()
-             throw data.error}
+             throw data.error
+        }
         setCurrUser(data)
 
     } catch (error) {
-        console.log(error)
+        setCurrUser(null)
+        localStorage.removeItem('token')
+        
+    } finally {
+        setLoading(false)
     }
 }
 export const getAllScore=async(setScores)=>{
     try {
         const response=await fetch(url+"users")
         const data=await response.json()
-        console.log(data)
         if(!response.ok) throw data.error
         setScores(data)
     } catch (error) {
@@ -111,9 +112,6 @@ export const updateScore=async (userId, level)=>{
         const data = await response.json();
         if(!response.ok)
             throw data.error()
-        console.log(data.message)
-       
-
     } catch (error){
         console.log(error)
     }

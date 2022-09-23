@@ -6,6 +6,7 @@ const GameList =({currUserLevel})=>{
     const gamecount= gameCount()
 
     console.log([...Array(gamecount).keys()])
+    
     const GameLink=({gameId})=>{
 
         if(gameId>currUserLevel+1)

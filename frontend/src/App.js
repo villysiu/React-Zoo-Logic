@@ -10,37 +10,43 @@ import Game from './components/Game'
 import Score from './components/Score'
 import GameRoute from './components/GameRoute'
 function App() {
+   
     const [currUser, setCurrUser] = useState(null)
+    const [loading, setLoading] = useState(false)
     const token=localStorage.getItem('token')
-    console.log(token)
-    
-    useEffect(()=>{
-        token ? getCurrUser(setCurrUser) : setCurrUser(null)
-    }, [token])
-    return (
-        <div className="app">
-          
 
-            <Header currUser={currUser} setCurrUser={setCurrUser} />
-            {currUser? 
-            <>
+    useEffect(()=>{
+        getCurrUser(setCurrUser, setLoading)
+    }, [token])
+    if(!token && !loading)
+        return(
+            <div className="app">
+                <User setCurrUser={setCurrUser} />
+            </div>
+        )
+   
+    return (
+        
+        <div className="app">
+            { currUser? 
+                <>
+                <Header currUser={currUser} setCurrUser={setCurrUser} />
                 <Routes>
                 <Route exact path='/games/:gameId' element={<GameRoute currUserLevel={currUser.level}/>}>
-                        
                     <Route path="/games/:gameId" element={<Game currUserLevel={currUser.level}  />} />
                 </Route>
                 <Route path="/score" element={<Score />} />
                 <Route path="/gamelist" element={<GameList currUserLevel={currUser.level} />} />
                 <Route path="*" element={<Navigate to={"/games/"+(currUser.level+1)} replace />} />
-                  
+                    
                 </Routes>
-            </>
-            : 
-                <User setCurrUser={setCurrUser} />
+                </>
+            :
+                <>Loading</>
             }
-
         </div>
-    );
+        
+    )
 }
 
 export default App;
