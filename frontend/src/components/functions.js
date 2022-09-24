@@ -27,6 +27,7 @@ export const evalTokens=(board)=>{
         ]
     )
 }
+
 export const matchSolution =( currBoard, header )=>{
     const grid=[
           [currBoard[0], currBoard[3],currBoard[6]],
@@ -38,6 +39,7 @@ export const matchSolution =( currBoard, header )=>{
     
     for(let i=0;i<6;i++){
         let {animalId, count}=header[i]
+        if(animalId===0) continue;
         if(grid[i].filter(a=>a===animalId).length!==count)
             return false
     }

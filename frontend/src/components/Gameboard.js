@@ -2,11 +2,11 @@
 import {Container, Row} from 'react-bootstrap'
 import GameToken from './GameToken'
 const Gameboard=(props )=>{
-    const {board,setCurrboard, fixed, tokenLeft } = props
+    const { currboard } = props
     return(
         <Container fluid>  
             <Row>
-                {board.map((animalId, idx)=><GameToken key={idx} pos={idx} animalId={animalId} setCurrboard={setCurrboard} fixed={fixed} tokenLeft={tokenLeft}/> )}    
+                {currboard.map((animalId, idx)=><GameToken key={idx} pos={idx} animalId={animalId} {...props} /> )}    
             </Row>
         </Container>
     )

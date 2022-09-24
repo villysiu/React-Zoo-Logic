@@ -10,25 +10,25 @@ import Game from './components/Game'
 import Score from './components/Score'
 import GameRoute from './components/GameRoute'
 function App() {
-   
-    const [currUser, setCurrUser] = useState(null)
-    const [loading, setLoading] = useState(false)
-    const token=localStorage.getItem('token')
 
+    const [currUser, setCurrUser] = useState(null)
+    const [loading, setLoading] = useState(true)
+    console.log(localStorage.getItem('tokenExpiredAt'))
     useEffect(()=>{
-        getCurrUser(setCurrUser, setLoading)
-    }, [token])
-    if(!token && !loading)
-        return(
-            <div className="app">
-                <User setCurrUser={setCurrUser} />
-            </div>
-        )
+        if(localStorage.getItem('tokenExpiredAt')>Date.now())
+            getCurrUser(setCurrUser, setLoading)
+        else{
+            localStorage.removeItem('token')
+            localStorage.removeItem('tokenExpiredAt')
+            setCurrUser(null)
+            setLoading(false)
+        }
+    }, [setCurrUser])
    
     return (
         
         <div className="app">
-            { currUser? 
+            { currUser ? 
                 <>
                 <Header currUser={currUser} setCurrUser={setCurrUser} />
                 <Routes>
@@ -41,9 +41,15 @@ function App() {
                     
                 </Routes>
                 </>
-            :
-                <>Loading</>
-            }
+             :
+                loading? 
+                    <div className="app">Loading</div> 
+                    :
+                    <div className="app">
+                        <User setCurrUser={setCurrUser} />
+                    </div>
+            
+            } 
         </div>
         
     )

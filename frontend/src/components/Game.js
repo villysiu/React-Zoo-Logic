@@ -5,30 +5,27 @@ import GameboardHeader from "./GameboardHeader.js";
 import Gameboard from './Gameboard'
 import TokenLeft from './TokenLeft'
 import WonModal from "./WonModal.js";
-import { evalTokens, matchSolution } from "./functions.js";
+import {  matchSolution, evalTokens } from "./functions.js";
 import { Button, Container, Row, Col }  from 'react-bootstrap'
 import { updateScore } from "./actions.js";
 
 const Game =({currUserLevel})=>{
-    console.log("Game re rendered")
     const params = useParams();
     const game=getGame(parseInt(params.gameId, 10))
     const [currboard, setCurrboard] = useState(game.board)
     const [tokenLeft, setTokenLeft] = useState(evalTokens(game.board))
     const [modalShow, setModalShow] = useState(false);
-    
-    
+
     useEffect(()=>{
-        console.log("before")
         setTokenLeft(evalTokens(currboard))
         if(currboard.every(x=>x>0) && matchSolution(currboard, game.header)){
-    
             setModalShow(true)
             if(currUserLevel<game.id)
                 updateScore(1, game.id)
         }   
-        console.log("after") 
+
     },[currboard, game.header, game.id, currUserLevel])
+    
     return (
         <Container>
             <WonModal show={modalShow} setShow={setModalShow} gid={params.gameId} />
@@ -51,7 +48,7 @@ const Game =({currUserLevel})=>{
                             </tbody></table>
                         </td>
                         <td colSpan="3">
-                            <Gameboard board ={currboard} setCurrboard={setCurrboard} fixed={game.fixed} tokenLeft={tokenLeft} />
+                            <Gameboard currboard ={currboard} setCurrboard={setCurrboard} fixed={game.fixed} tokenLeft={tokenLeft} setTokenLeft={setTokenLeft} setModalShow={setModalShow} />
                         </td>
                         </tr>
                     </tbody>
@@ -61,7 +58,7 @@ const Game =({currUserLevel})=>{
                     <Container>
                         <Row xs={4} md={1}>         
                             <TokenLeft tokenLeft={tokenLeft} />
-                            <Col ><Button  onClick={()=>setCurrboard(game.board)} >Reset </Button></Col>
+                            <Col ><Button onClick={()=>setCurrboard(game.board)} >Reset </Button></Col>
                         </Row>
                     </Container>
                 </Col>

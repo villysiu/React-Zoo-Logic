@@ -14,6 +14,7 @@ export const login=async (userinfo, setCurrUser, setErrorMsg)=>{
             throw data.error
         }
         localStorage.setItem('token', response.headers.get('Authorization'))
+        localStorage.setItem('tokenExpiredAt', Date.now()+60*1000)
         setCurrUser(data)
         setErrorMsg(null)
     } catch (error) {

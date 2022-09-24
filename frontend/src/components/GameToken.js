@@ -1,17 +1,17 @@
 import { Col } from "react-bootstrap"
 import { getUrl } from "./functions"
 
-const GameToken=({ pos, animalId, setCurrboard, fixed, tokenLeft})=>{
-    console.log("button re rebdered")
+
+const GameToken=({ pos, animalId, setCurrboard, fixed, tokenLeft, setTokenLeft})=>{
     const animalObj=getUrl(animalId)
    
     const handleClick=(e)=>{
         e.preventDefault();
-        let num=(animalObj.id+1)%4
-        while(num!==0 && tokenLeft[num-1]===0){
-            num=(num+1)%4
+        let currAnimalId=(animalObj.id+1)%4
+        while(currAnimalId!==0 && tokenLeft[currAnimalId-1]===0){
+            currAnimalId=(currAnimalId+1)%4
         }        
-        setCurrboard(prev=>[...prev.slice(0,pos), num, ...prev.slice(pos+1)] )
+        setCurrboard(prev=>[...prev.slice(0,pos), currAnimalId, ...prev.slice(pos+1)])
     }
 
     return(
