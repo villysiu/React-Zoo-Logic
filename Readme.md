@@ -10,11 +10,11 @@ To start,  clone the git to you preferred editor.
 There will be api and frontend in the folder.
 
 Change into api folder 
-``` cd api
+``` cd api ```
 then run 
-``bundle install
+``` bundle install ```
 , then 
-```rails s
+``` rails s ```
 to start up the server. `http://localhost:3000` will open.
 There is no photo in the app yet. You can wither signup and share photos by providing a link or you can close the server and run `db:seed` to preload photos and user login. 
 
