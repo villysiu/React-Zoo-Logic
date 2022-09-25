@@ -14,7 +14,7 @@ export const login=async (userinfo, setCurrUser, setErrorMsg)=>{
             throw data.error
         }
         localStorage.setItem('token', response.headers.get('Authorization'))
-        localStorage.setItem('tokenExpiredAt', Date.now()+60*1000)
+        localStorage.setItem('tokenExpiredAt', Date.now()+30*60*1000)
         setCurrUser(data)
         setErrorMsg(null)
     } catch (error) {
@@ -36,6 +36,7 @@ export const signup=async (userinfo, setCurrUser, setErrorMsg)=>{
         const data=await response.json()
         if(!response.ok) throw data.error
         localStorage.setItem('token', response.headers.get('Authorization'))
+        localStorage.setItem('tokenExpiredAt', Date.now()+30*60*1000)
         setCurrUser(data)
         setErrorMsg(null)
     } catch (error) {

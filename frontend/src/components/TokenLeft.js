@@ -1,7 +1,7 @@
 import { getUrl } from "./functions"
 import {Col} from 'react-bootstrap'
 const TokenLeft =({tokenLeft})=>{
-    console.log("tokenLeft re renered too")
+    
     const TokenLeftDisplay =({animalId, count})=>{
         const {url, name}=getUrl(animalId)
         return (

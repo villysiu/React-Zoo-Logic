@@ -15,7 +15,6 @@ const Login=({setToggleLogin, setCurrUser})=>{
         
         login({user: { email: email, password: password }}, setCurrUser, setErrorMsg)
         e.target.reset()
-
     }
     return (
         <div>

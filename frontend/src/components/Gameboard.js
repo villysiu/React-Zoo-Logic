@@ -1,12 +1,12 @@
 
 import {Container, Row} from 'react-bootstrap'
 import GameToken from './GameToken'
-const Gameboard=(props )=>{
-    const { currboard } = props
+const Gameboard=(props)=>{
+    
     return(
         <Container fluid>  
             <Row>
-                {currboard.map((animalId, idx)=><GameToken key={idx} pos={idx} animalId={animalId} {...props} /> )}    
+                {props.currboard.map((animalId, idx)=><GameToken key={idx} pos={idx} animalId={animalId} {...props} /> )}    
             </Row>
         </Container>
     )

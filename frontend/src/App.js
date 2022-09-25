@@ -8,12 +8,13 @@ import User from './components/User'
 import GameList from './components/GameList';
 import Game from './components/Game'
 import Score from './components/Score'
+import About from './components/About'
 import GameRoute from './components/GameRoute'
 function App() {
 
     const [currUser, setCurrUser] = useState(null)
     const [loading, setLoading] = useState(true)
-    console.log(localStorage.getItem('tokenExpiredAt'))
+    
     useEffect(()=>{
         if(localStorage.getItem('tokenExpiredAt')>Date.now())
             getCurrUser(setCurrUser, setLoading)
@@ -37,6 +38,7 @@ function App() {
                 </Route>
                 <Route path="/score" element={<Score />} />
                 <Route path="/gamelist" element={<GameList currUserLevel={currUser.level} />} />
+                <Route path="/about" element={<About />} />
                 <Route path="*" element={<Navigate to={"/games/"+(currUser.level+1)} replace />} />
                     
                 </Routes>

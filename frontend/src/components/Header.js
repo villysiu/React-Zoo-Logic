@@ -8,7 +8,6 @@ import { logout } from './actions'
 import { Link } from "react-router-dom";
 
 function Header({currUser, setCurrUser}){
-  console.log("header re rendr")
   const handleLogout=()=>{
     logout(currUser.id, setCurrUser)
   }
@@ -21,6 +20,7 @@ function Header({currUser, setCurrUser}){
   
                 <Dropdown.Item as={Link} to="/gamelist">Game</Dropdown.Item>
                 <Dropdown.Item as={Link} to="/score">Score</Dropdown.Item>
+                <Dropdown.Item as={Link} to="/about">About the game</Dropdown.Item>
                 <Dropdown.Divider />
                 <Dropdown.Item as={Button} onClick={handleLogout}>Logout</Dropdown.Item>
             </DropdownButton>

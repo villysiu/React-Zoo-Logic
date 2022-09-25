@@ -7,8 +7,6 @@ const Score =()=>{
     useEffect(()=>{
         getAllScore(setScores)
     },[setScores])
-    
-    console.log(scores)
    
     if(!scores)
         return <div>Loading</div>
@@ -20,13 +18,12 @@ const Score =()=>{
                 <table border="1">
                     <thead><tr><th>Player</th><th>Level</th></tr></thead>
                     <tbody>
-                {scores.map(score=><tr key={score.id} ><td>{score.username}</td><td>{score.level}</td></tr>)}
-                </tbody>
+                        {scores.map(score=><tr key={score.id} ><td>{score.username}</td><td>{score.level}</td></tr>)}
+                    </tbody>
                 
                 </table>
             </Row>
         </Container>
-
     )
 }
 export default Score
