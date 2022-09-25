@@ -1,5 +1,6 @@
 # Zoo logic
 
+![](https://github.com/villysiu/React-Zoo-Logic/blob/master/zoologic.gif)
 Zoo Logic is a sudoku like game for kids age 3 and up. Player place the animal tokesns onto corresponding positions on the board, according the the top row and left column requirement.
 
 ## Tech Stack
