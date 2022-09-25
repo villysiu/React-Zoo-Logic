@@ -32,7 +32,6 @@ export const signup=async (userinfo, setCurrUser, setErrorMsg)=>{
             },
             body: JSON.stringify(userinfo)
         })
-        
         const data=await response.json()
         if(!response.ok) throw data.error
         localStorage.setItem('token', response.headers.get('Authorization'))
