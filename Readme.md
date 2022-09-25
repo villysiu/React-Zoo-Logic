@@ -14,8 +14,8 @@ Change into api folder
 then run 
 ``` bundle install ```
 , then 
-``` rails s ```
+```rails s```
 to start up the server. `http://localhost:3000` will open.
-There is no photo in the app yet. You can wither signup and share photos by providing a link or you can close the server and run `db:seed` to preload photos and user login. 
-
 Then change into frontend folder, `cd ..` followed by `cd frontend`, run `npm install`. After installing the modules, start up the server by running `npm start`. `http://localhost:3001` will open.
+There are 30 levels in the game. After signup, you can start with level 1. Exisiting user will start with last level they have completed.  
+
