@@ -4,7 +4,7 @@ const games=[
         header: [{animalId:2, count:1}, {animalId:3, count:1}, {animalId:1, count:1},
                  {animalId:2, count:1}, {animalId:3, count:1}, {animalId:1, count:1}],
         board: [0,0,0,0,0,0,0,0,0],
-        fixed: [0],
+        fixed: [],
     },
     {
         id: 2,
@@ -34,13 +34,13 @@ const games=[
         board: [0,0,0,3,0,0,0,0,0],
         fixed: [3],
     },
-    // {
-    //     id: 6,
-    //     header: [{animalId:2, count:1}, {animalId:0, count:0}, {animalId:1, count:1},
-    //             {animalId:3, count:2}, {animalId:2, count:2},{animalId:1, count:1}],
-    //     board: [0,0,0,0,2,0,0,0,0],
-    //     fixed: [4],
-    // },
+    {
+        id: 6,
+        header: [{animalId:2, count:1}, {animalId:0, count:0}, {animalId:1, count:1},
+                {animalId:3, count:2}, {animalId:2, count:2},{animalId:1, count:1}],
+        board: [0,0,0,0,2,0,0,0,0],
+        fixed: [4],
+    },
    
 
 ]

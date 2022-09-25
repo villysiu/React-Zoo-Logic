@@ -58,6 +58,7 @@ export const logout=async (user_id, setCurrUser)=>{
         const data=await response.json()
         if(!response.ok) throw data.error
         localStorage.removeItem('token')
+        localStorage.removeItem('tokenExpiredAt')
         setCurrUser(null)
 
     } catch (error) {
@@ -83,6 +84,7 @@ export const getCurrUser=async(setCurrUser, setLoading)=>{
     } catch (error) {
         setCurrUser(null)
         localStorage.removeItem('token')
+        localStorage.removeItem('tokenExpiredAt')
         
     } finally {
         setLoading(false)

@@ -30,7 +30,7 @@ const Game =({currUserLevel})=>{
         <Container>
             <WonModal show={modalShow} setShow={setModalShow} gid={params.gameId} />
             <Row>
-                <Col xs={12} md={1}>GAME {game.id}</Col>
+                <Col xs={12} md={1}><h1>{game.id}</h1></Col>
                 <Col xs={12} md={8} >
                 <table className="mx-auto" width="480x" height="480px" cellSpacing="0" cellPadding="0">
                     <thead>
@@ -56,9 +56,9 @@ const Game =({currUserLevel})=>{
                 </Col>
                 <Col xs={12} md={3}>
                     <Container>
-                        <Row xs={4} md={1}>         
+                        <Row xs={4} md={1} >         
                             <TokenLeft tokenLeft={tokenLeft} />
-                            <Col ><Button onClick={()=>setCurrboard(game.board)} >Reset </Button></Col>
+                            <Col ><Button onClick={()=>setCurrboard(game.board)} variant="success" >Reset </Button></Col>
                         </Row>
                     </Container>
                 </Col>

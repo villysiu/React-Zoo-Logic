@@ -1,4 +1,5 @@
 import './App.css';
+import background from "./components/data/forest.png";
 import { React, useState, useEffect } from 'react';
 import { Routes, Route, Navigate } from "react-router-dom";
 import { getCurrUser } from './components/actions'
@@ -28,7 +29,14 @@ function App() {
    
     return (
         
-        <div className="app">
+
+        <div className="app" style={{ backgroundImage: `url(${background})`, 
+                     height: '100vh', 
+                    backgroundSize: 'cover',
+                    
+    backgroundRepeat: 'repeat'
+     }}>
+        <br/><br/><br/>
             { currUser ? 
                 <>
                 <Header currUser={currUser} setCurrUser={setCurrUser} />
@@ -48,6 +56,7 @@ function App() {
                     <div className="app">Loading</div> 
                     :
                     <div className="app">
+                        
                         <User setCurrUser={setCurrUser} />
                     </div>
             

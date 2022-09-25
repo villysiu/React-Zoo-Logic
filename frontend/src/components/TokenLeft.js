@@ -12,7 +12,7 @@ const TokenLeft =({tokenLeft})=>{
     }
     return (
         <>
-            {tokenLeft.map((count, idx)=><Col key={idx} ><TokenLeftDisplay animalId={idx+1} count={count}  /></Col> )}          
+            {tokenLeft.map((count, idx)=><Col key={idx} className="mb-3"><TokenLeftDisplay animalId={idx+1} count={count}  /></Col> )}          
         </>
     )
 }

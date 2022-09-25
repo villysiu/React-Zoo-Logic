@@ -12,11 +12,14 @@ function Header({currUser, setCurrUser}){
     logout(currUser.id, setCurrUser)
   }
   return (
-    <Navbar bg="light" expand="false">
+   
+      <Navbar expand="false" fixed="top">
       <Container>
-        <Navbar.Brand as={Link} to={currUser? "/games/1"+(currUser.level+1) : "/"}><h1>Zoo Logic</h1></Navbar.Brand>
+        <Navbar.Brand as={Link} to={currUser? "/games/1"+(currUser.level+1) : "/"}>
+
+        </Navbar.Brand>
         {currUser && 
-            <DropdownButton align="end" title={currUser.username} id="dropdown-menu-align-end">
+            <DropdownButton variant="success" align="end" title={currUser.username} id="dropdown-menu-align-end">
   
                 <Dropdown.Item as={Link} to="/gamelist">Game</Dropdown.Item>
                 <Dropdown.Item as={Link} to="/score">Score</Dropdown.Item>

@@ -34,7 +34,7 @@ const Signup=({setToggleLogin, setCurrUser})=>{
                     <Form.Control type="password" name="password" placeholder="Password" />
                 </Form.Group>
             
-                <Button variant="primary" type="submit">
+                <Button variant="success" type="submit">
                     Signup
                 </Button>
             </Form>
