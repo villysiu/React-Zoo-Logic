@@ -1,5 +1,5 @@
 import {useEffect, useState} from 'react'
-import {Container, Row} from 'react-bootstrap'
+import {Container, Row, Table} from 'react-bootstrap'
 import { getAllScore } from './actions'
 const Score =()=>{
     const [scores, setScores]=useState()
@@ -15,13 +15,13 @@ const Score =()=>{
 
         <Container>
             <Row >
-                <table border="1">
-                    <thead><tr><th>Player</th><th>Level</th></tr></thead>
+                <Table className='scoreTable'>
+                    <thead><tr height="20px"><th>Player</th><th>Level</th></tr></thead>
                     <tbody>
-                        {scores.map(score=><tr key={score.id} ><td>{score.username}</td><td>{score.level}</td></tr>)}
+                        {scores.map(score=><tr height="auto" key={score.id} ><td>{score.username}</td><td>{score.level}</td></tr>)}
                     </tbody>
                 
-                </table>
+                </Table>
             </Row>
         </Container>
     )

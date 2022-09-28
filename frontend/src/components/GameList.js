@@ -1,8 +1,9 @@
 import {Container, Row, Col} from 'react-bootstrap'
 import {Link} from 'react-router-dom'
-import {gameCount} from './data/games'
+import {gameCount} from '../data/games'
 
 const GameList =({currUserLevel})=>{
+    console.log("in gmae list")
     const gamecount= gameCount()    
     const GameLink=({gameId})=>{
         if(gameId>currUserLevel+1)

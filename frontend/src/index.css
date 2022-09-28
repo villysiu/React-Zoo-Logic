@@ -22,7 +22,7 @@ html {
   font-size: 1.5em;
   font-weight: bold;
 }
-tr,th{
+.game tr,th{
   width: 120px;
   height: 120px;
 
@@ -42,3 +42,10 @@ tr,th{
  height: 60px;
  background-color: #597045;
 }
+
+@font-face {
+  font-family: "CG";
+  src: local("CG"),
+   url("./fonts/Cg-Bold.ttf") format("truetype");
+  font-weight: bold;
+  }

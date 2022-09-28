@@ -18,7 +18,7 @@ const GameToken=({ pos, animalId, setCurrboard, fixed, tokenLeft, setTokenLeft})
         <Col xs="4" style={{ height: '120px'}}>
             {
             fixed.includes(pos) ? 
-                <div className="circle" ><img src={animalObj.url} alt={animalObj.animal} /></div> 
+                <div className="circle" style={{opacity: 0.6}}><img src={animalObj.url} alt={animalObj.animal} /></div> 
                 : 
                 <div className="circle" onClick={handleClick}>
                     {animalObj.id===0 ? null:<img  src={animalObj.url} alt={animalObj.animal} />}

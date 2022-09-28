@@ -1,5 +1,5 @@
 import './App.css';
-import background from "./components/data/forest.png";
+import background from "./data/forest_bg.png";
 import { React, useState, useEffect } from 'react';
 import { Routes, Route, Navigate } from "react-router-dom";
 import { getCurrUser } from './components/actions'
@@ -11,8 +11,9 @@ import Game from './components/Game'
 import Score from './components/Score'
 import About from './components/About'
 import GameRoute from './components/GameRoute'
-function App() {
-
+import Spinner from 'react-bootstrap/Spinner';
+const App=()=>{
+console.log("app reload")
     const [currUser, setCurrUser] = useState(null)
     const [loading, setLoading] = useState(true)
     
@@ -26,44 +27,36 @@ function App() {
             setLoading(false)
         }
     }, [setCurrUser])
-   
+   if(loading)
+    return(
+        <div><Spinner animation="border" variant="success" /> </div>
+    )
     return (
         
-
-        <div className="app" style={{ backgroundImage: `url(${background})`, 
-                     height: '100vh', 
-                    backgroundSize: 'cover',
-                    
-    backgroundRepeat: 'repeat'
-     }}>
-        <br/><br/><br/>
-            { currUser ? 
-                <>
-                <Header currUser={currUser} setCurrUser={setCurrUser} />
-                <Routes>
-                <Route exact path='/games/:gameId' element={<GameRoute currUserLevel={currUser.level}/>}>
-                    <Route path="/games/:gameId" element={<Game currUserLevel={currUser.level}  />} />
-                </Route>
-                <Route path="/score" element={<Score />} />
-                <Route path="/gamelist" element={<GameList currUserLevel={currUser.level} />} />
-                <Route path="/about" element={<About />} />
-                <Route path="*" element={<Navigate to={"/games/"+(currUser.level+1)} replace />} />
-                    
-                </Routes>
-                </>
-             :
-                loading? 
-                    <div className="app">Loading</div> 
-                    :
-                    <div className="app">
-                        
-                        <User setCurrUser={setCurrUser} />
-                    </div>
+        <div className="app" style={{ backgroundImage: `url(${background})`, backgroundSize: 'cover',}}>
+            <Header currUser={currUser} setCurrUser={setCurrUser} />
+            <br/><br/><br/>
             
-            } 
-        </div>
-        
+            <Routes>
+                <Route path="/score" element={<Score />} />
+                <Route path="/about" element={<About />} />
+                <Route path="*" element={<Navigate to="/" replace />} /> 
+                {currUser? <>
+                    <Route exact path='/games/:gameId' element={<GameRoute currUserLevel={currUser.level}/> }>
+                        <Route path="/games/:gameId" element={<Game currUserLevel={currUser.level}  />} />
+                    </Route>
+                    <Route path="/gamelist" element={<GameList currUserLevel={currUser.level} />} /> 
+                    <Route path="/" element={<Navigate to={"/games/"+(currUser.level+1)} replace />} />         
+                </>
+                :
+                <><Route path="/" element={<User setCurrUser={setCurrUser}/>} /> </>
+                }
+            </Routes>
+
+        <br/><br/><br/>
+       </div>
+
     )
-}
+    }
 
 export default App;

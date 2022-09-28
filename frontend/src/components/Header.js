@@ -1,35 +1,34 @@
-import Container from 'react-bootstrap/Container';
-import Navbar from 'react-bootstrap/Navbar';
-import Dropdown from 'react-bootstrap/Dropdown';
-import Button from 'react-bootstrap/Button';
-import DropdownButton from 'react-bootstrap/DropdownButton';
-
+import {Container, Navbar, Nav } from 'react-bootstrap';
 import { logout } from './actions'
 import { Link } from "react-router-dom";
-
-function Header({currUser, setCurrUser}){
-  const handleLogout=()=>{
-    logout(currUser.id, setCurrUser)
-  }
-  return (
-   
-      <Navbar expand="false" fixed="top">
-      <Container>
-        <Navbar.Brand as={Link} to={currUser? "/games/1"+(currUser.level+1) : "/"}>
-
-        </Navbar.Brand>
-        {currUser && 
-            <DropdownButton variant="success" align="end" title={currUser.username} id="dropdown-menu-align-end">
+const Header=({currUser, setCurrUser})=>{
   
-                <Dropdown.Item as={Link} to="/gamelist">Game</Dropdown.Item>
-                <Dropdown.Item as={Link} to="/score">Score</Dropdown.Item>
-                <Dropdown.Item as={Link} to="/about">About the game</Dropdown.Item>
-                <Dropdown.Divider />
-                <Dropdown.Item as={Button} onClick={handleLogout}>Logout</Dropdown.Item>
-            </DropdownButton>
-        }      
+  return (
+   <div>
+   <Navbar collapseOnSelect bg="light" expand='xs' fixed="top"  >
+      <Container>
+
+        <Navbar.Brand className="font-face-cg" style={{color: 'green', fontSize:'30px', padding:'0px'}} as={Link} to='/' >
+          Zoo Logic
+        </Navbar.Brand>
+        {currUser ?
+          <Navbar.Toggle  style={{background:'green', color:'white'}} >{currUser.username[0]}</Navbar.Toggle>:
+          <Navbar.Toggle aria-controls="basic-navbar-nav" />
+        }
+        <Navbar.Collapse id="basic-navbar-nav"> 
+          <Nav className="me-auto">
+              {!currUser && <Nav.Link href="#user" as={Link} to='/'>Login/Signup</Nav.Link>}
+              <Nav.Link href="#gamelist" as={Link} to="/gamelist" >Games</Nav.Link>
+              <Nav.Link href="#score" as={Link} to="/score" >Score</Nav.Link>
+              <Nav.Link href="#about" as={Link} to="/about"  >About the Game</Nav.Link>
+              {currUser && <Nav.Link href="#logout"  onClick={()=>logout(currUser.id, setCurrUser)}>Logout</Nav.Link> }
+          </Nav>
+        </Navbar.Collapse>
       </Container>
-    </Navbar>
+   </Navbar>
+
+   </div>
+  
   );
 }
 

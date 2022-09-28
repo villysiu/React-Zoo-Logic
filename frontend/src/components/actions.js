@@ -10,6 +10,7 @@ export const login=async (userinfo, setCurrUser, setErrorMsg)=>{
             body: JSON.stringify(userinfo)
         })
         const data=await response.json()
+        console.log(data)
         if(!response.ok){ 
             throw data.error
         }
@@ -79,7 +80,7 @@ export const getCurrUser=async(setCurrUser, setLoading)=>{
              throw data.error
         }
         setCurrUser(data)
-
+        console.log(data)
     } catch (error) {
         setCurrUser(null)
         localStorage.removeItem('token')

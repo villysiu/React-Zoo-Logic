@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
-import { getGame } from "./data/games.js";
+import { getGame } from "../data/games.js";
 import GameboardHeader from "./GameboardHeader.js";
 import Gameboard from './Gameboard'
 import TokenLeft from './TokenLeft'
@@ -32,7 +32,7 @@ const Game =({currUserLevel})=>{
             <Row>
                 <Col xs={12} md={1}><h1>{game.id}</h1></Col>
                 <Col xs={12} md={8} >
-                <table className="mx-auto" width="480x" height="480px" cellSpacing="0" cellPadding="0">
+                <table className="game mx-auto" width="480x" height="480px" cellSpacing="0" cellPadding="0">
                     <thead>
                         <tr>
                             <th></th>

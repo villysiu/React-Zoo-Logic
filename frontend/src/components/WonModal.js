@@ -1,5 +1,5 @@
 import { Modal, Button } from "react-bootstrap";
-import { gameCount } from "./data/games";
+import { gameCount } from "../data/games";
 const WonModal=({show, setShow, gid})=>{
     const gamecount=gameCount()
     

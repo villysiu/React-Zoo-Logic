@@ -1,5 +1,5 @@
 import { useParams, Outlet, Navigate } from "react-router-dom";
-import { gameCount } from "./data/games";
+import { gameCount } from "../data/games";
 const GameRoute =({currUserLevel})=>{
     const params = useParams();
     const paramGameId=parseInt(params.gameId, 10) 

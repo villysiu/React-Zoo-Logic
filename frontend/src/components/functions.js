@@ -1,6 +1,6 @@
-import lion from './data/lion.png'
-import zebra from './data/zebra.png'
-import hippo from './data/hippo.png'
+import lion from '../data/lion.png'
+import zebra from '../data/zebra.png'
+import hippo from '../data/hippo.png'
 
 // hippo, lion, zebra
 export const getUrl=(animalId)=>{
