@@ -14,7 +14,7 @@ import About from './components/About'
 import GameRoute from './components/GameRoute'
 
 const App=()=>{
-console.log("app reload")
+
     const [currUser, setCurrUser] = useState(null)
     const [loading, setLoading] = useState(true)
     

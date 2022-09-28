@@ -80,7 +80,7 @@ export const getCurrUser=async(setCurrUser, setLoading)=>{
              throw data.error
         }
         setCurrUser(data)
-        console.log(data)
+        
     } catch (error) {
         setCurrUser(null)
         localStorage.removeItem('token')
