@@ -9,23 +9,32 @@ import {  matchSolution, evalTokens } from "./functions.js";
 import { Button, Container, Row, Col }  from 'react-bootstrap'
 import { updateScore } from "./actions.js";
 
-const Game =({currUserLevel})=>{
+const Game =({currUser})=>{
+    
     const params = useParams();
     const game=getGame(parseInt(params.gameId, 10))
-    const [currboard, setCurrboard] = useState(game.board)
-    const [tokenLeft, setTokenLeft] = useState(evalTokens(game.board))
+    
+    const [currboard, setCurrboard] = useState(null)
+    const [tokenLeft, setTokenLeft] = useState(null)
     const [modalShow, setModalShow] = useState(false);
 
     useEffect(()=>{
-        setTokenLeft(evalTokens(currboard))
-        if(currboard.every(x=>x>0) && matchSolution(currboard, game.header)){
-            setModalShow(true)
-            if(currUserLevel<game.id)
-                updateScore(1, game.id)
-        }   
+        setCurrboard(game.board)
+        setTokenLeft(evalTokens(game.board))
+    },[game.board])
 
-    },[currboard, game.header, game.id, currUserLevel])
-    
+    useEffect(()=>{
+        if(currboard){
+            setTokenLeft(evalTokens(currboard))
+            if(currboard.every(x=>x>0) && matchSolution(currboard, game.header)){
+                setModalShow(true)
+                if(currUser.level<game.id)
+                    updateScore(currUser.id, game.id)
+        }   
+}
+    },[currboard, game.header, game.id, currUser.level, currUser.id])
+    if(!currboard)
+        return <div>loading</div>
     return (
         <Container>
             <WonModal show={modalShow} setShow={setModalShow} gid={params.gameId} />

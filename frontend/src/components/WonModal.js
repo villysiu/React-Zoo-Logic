@@ -1,5 +1,6 @@
 import { Modal, Button } from "react-bootstrap";
 import { gameCount } from "../data/games";
+import { Link } from "react-router-dom";
 const WonModal=({show, setShow, gid})=>{
     const gamecount=gameCount()
     
@@ -14,10 +15,14 @@ const WonModal=({show, setShow, gid})=>{
                 {parseInt(gid)===gamecount ? 
                     <>
                     <p>You have completed all level.</p>
-                    <Button href="/games/1" >Play again?</Button>
+                    <Button as={Link} variant="success" to="/gamelist" onClick={e=>setShow(false)} >Play again?</Button>
+
                     </>
                 :
-                <Button variant="success" href={"/games/"+(parseInt(gid)+1)} >Next Game</Button>   }         
+                <>
+                  <Button as={Link} variant="success" to={"/games/"+(parseInt(gid)+1)} onClick={e=>setShow(false)} >Next Game</Button>   
+                </>
+            }         
             </Modal.Footer>
         </Modal>
         </>

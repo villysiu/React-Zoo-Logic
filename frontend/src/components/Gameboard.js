@@ -2,7 +2,6 @@
 import {Container, Row} from 'react-bootstrap'
 import GameToken from './GameToken'
 const Gameboard=(props)=>{
-    
     return(
         <Container fluid>  
             <Row>

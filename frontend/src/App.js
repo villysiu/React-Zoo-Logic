@@ -44,7 +44,7 @@ console.log("app reload")
                 <Route path="*" element={<Navigate to="/" replace />} /> 
                 {currUser? <>
                     <Route exact path='/games/:gameId' element={<GameRoute currUserLevel={currUser.level}/> }>
-                        <Route path="/games/:gameId" element={<Game currUserLevel={currUser.level}  />} />
+                        <Route path="/games/:gameId" element={<Game currUser={currUser}  />} />
                     </Route>
                     <Route path="/gamelist" element={<GameList currUserLevel={currUser.level} />} /> 
                     <Route path="/" element={<Navigate to={"/games/"+(currUser.level+1)} replace />} />         
