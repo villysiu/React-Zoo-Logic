@@ -12,7 +12,8 @@ const Header=({currUser, setCurrUser})=>{
           Zoo Logic
         </Navbar.Brand>
         {currUser ?
-          <Navbar.Toggle  style={{background:'green', color:'white'}} >{currUser.username[0]}</Navbar.Toggle>:
+          <Navbar.Toggle  style={{background:'green', color:'white'}} >{currUser.username[0]}</Navbar.Toggle>
+          :
           <Navbar.Toggle aria-controls="basic-navbar-nav" />
         }
         <Navbar.Collapse id="basic-navbar-nav"> 

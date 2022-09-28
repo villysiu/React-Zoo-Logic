@@ -12,8 +12,6 @@ export const getUrl=(animalId)=>{
             return {id: 2, animal: "lion", url: lion}
         case 3:
             return {id: 3, animal: "zebra", url: zebra}
-        
-        
         default:
             return {id: 0, animal: null, url: null}
     }

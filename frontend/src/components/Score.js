@@ -1,6 +1,7 @@
 import {useEffect, useState} from 'react'
 import {Container, Row, Table} from 'react-bootstrap'
 import { getAllScore } from './actions'
+import Spinner from 'react-bootstrap/Spinner';
 const Score =()=>{
     const [scores, setScores]=useState()
 
@@ -8,9 +9,11 @@ const Score =()=>{
         getAllScore(setScores)
     },[setScores])
    
-    if(!scores)
-        return <div>Loading</div>
-
+    if(!scores){
+        return(
+            <div><Spinner animation="border" variant="success" /> </div>
+        )
+    }   
     return (
 
         <Container>

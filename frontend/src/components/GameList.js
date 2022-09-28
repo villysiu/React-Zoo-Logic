@@ -3,8 +3,9 @@ import {Link} from 'react-router-dom'
 import {gameCount} from '../data/games'
 
 const GameList =({currUserLevel})=>{
-    console.log("in gmae list")
-    const gamecount= gameCount()    
+    
+    const gamecount= gameCount() 
+       
     const GameLink=({gameId})=>{
         if(gameId>currUserLevel+1)
             return (<Col>Game {gameId}</Col>)

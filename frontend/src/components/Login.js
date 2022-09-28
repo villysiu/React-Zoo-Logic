@@ -4,10 +4,7 @@ import { login } from './actions'
 const Login=({setToggleLogin, setCurrUser})=>{
     const formRef=useRef()
     const [errorMsg, setErrorMsg]=useState(null)
-    const handleClick=(e)=>{
-        e.preventDefault();
-        setToggleLogin(prev=>!prev)
-    }
+   
     const handleSubmit=(e)=>{
         e.preventDefault();
         const formData=new FormData(formRef.current)
@@ -38,7 +35,7 @@ const Login=({setToggleLogin, setCurrUser})=>{
             </Form>
             <div>
                 <br/>
-                Not registered yet, <a href="#login" onClick={handleClick} >Signup</a>  here
+                Not registered yet, <a href="#login" onClick={e=>setToggleLogin(prev=>!prev)} >Signup</a>  here
             </div>
         </div>
     )

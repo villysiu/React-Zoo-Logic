@@ -2,6 +2,7 @@ import './App.css';
 import background from "./data/forest_bg.png";
 import { React, useState, useEffect } from 'react';
 import { Routes, Route, Navigate } from "react-router-dom";
+import Spinner from 'react-bootstrap/Spinner';
 import { getCurrUser } from './components/actions'
 
 import Header from './components/Header'
@@ -11,7 +12,7 @@ import Game from './components/Game'
 import Score from './components/Score'
 import About from './components/About'
 import GameRoute from './components/GameRoute'
-import Spinner from 'react-bootstrap/Spinner';
+
 const App=()=>{
 console.log("app reload")
     const [currUser, setCurrUser] = useState(null)
@@ -27,12 +28,12 @@ console.log("app reload")
             setLoading(false)
         }
     }, [setCurrUser])
+
    if(loading)
     return(
         <div><Spinner animation="border" variant="success" /> </div>
     )
-    return (
-        
+    return ( 
         <div className="app" style={{ backgroundImage: `url(${background})`, backgroundSize: 'cover',}}>
             <Header currUser={currUser} setCurrUser={setCurrUser} />
             <br/><br/><br/>
