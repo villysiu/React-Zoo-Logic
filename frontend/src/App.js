@@ -17,15 +17,17 @@ const App=()=>{
 
     const [currUser, setCurrUser] = useState(null)
     const [loading, setLoading] = useState(true)
+    const [currUserLevel, setCurrUserLevel]=useState(0)
     
     useEffect(()=>{
         if(localStorage.getItem('tokenExpiredAt')>Date.now())
-            getCurrUser(setCurrUser, setLoading)
+            getCurrUser(setCurrUser, setCurrUserLevel, setLoading)
         else{
             localStorage.removeItem('token')
             localStorage.removeItem('tokenExpiredAt')
             setCurrUser(null)
             setLoading(false)
+            setCurrUserLevel(0)
         }
     }, [setCurrUser])
 
@@ -35,7 +37,7 @@ const App=()=>{
     )
     return ( 
         <div className="app" style={{ backgroundImage: `url(${background})`, backgroundSize: 'cover',}}>
-            <Header currUser={currUser} setCurrUser={setCurrUser} />
+            <Header currUser={currUser} setCurrUser={setCurrUser} setCurrUserLevel={setCurrUserLevel}/>
             <br/><br/><br/>
             
             <Routes>
@@ -43,14 +45,14 @@ const App=()=>{
                 <Route path="/about" element={<About />} />
                 <Route path="*" element={<Navigate to="/" replace />} /> 
                 {currUser? <>
-                    <Route exact path='/games/:gameId' element={<GameRoute currUserLevel={currUser.level}/> }>
-                        <Route path="/games/:gameId" element={<Game currUser={currUser}  />} />
+                    <Route exact path='/games/:gameId' element={<GameRoute currUserLevel={currUserLevel}/> }>
+                        <Route path="/games/:gameId" element={<Game currUser={currUser} setCurrUserLevel={setCurrUserLevel} />} />
                     </Route>
-                    <Route path="/gamelist" element={<GameList currUserLevel={currUser.level} />} /> 
-                    <Route path="/" element={<Navigate to={"/games/"+(currUser.level+1)} replace />} />         
+                    <Route path="/gamelist" element={<GameList currUserLevel={currUserLevel} />} /> 
+                    <Route path="/" element={<Navigate to={"/games/"+(currUserLevel+1)} replace />} />         
                 </>
                 :
-                <><Route path="/" element={<User setCurrUser={setCurrUser}/>} /> </>
+                <><Route path="/" element={<User setCurrUser={setCurrUser} setCurrUserLevel={setCurrUserLevel}/>} /> </>
                 }
             </Routes>
 

@@ -1,7 +1,7 @@
 import { useState, useRef } from 'react'
 import {Button, Form } from 'react-bootstrap'
 import { signup } from './actions'
-const Signup=({setToggleLogin, setCurrUser})=>{
+const Signup=({setToggleLogin, setCurrUser, setCurrUserLevel})=>{
     const formRef=useRef()
     const [errorMsg, setErrorMsg]=useState(null)
 
@@ -10,7 +10,7 @@ const Signup=({setToggleLogin, setCurrUser})=>{
         const formData=new FormData(formRef.current)
         const {email, username, password}=Object.fromEntries(formData)
         
-        signup({user: { email: email, username: username, password: password }}, setCurrUser, setErrorMsg, )
+        signup({user: { email: email, username: username, password: password }}, setCurrUser, setErrorMsg,setCurrUserLevel )
         e.target.reset()
     }
     return (

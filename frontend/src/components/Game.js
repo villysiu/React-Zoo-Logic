@@ -6,10 +6,11 @@ import Gameboard from './Gameboard'
 import TokenLeft from './TokenLeft'
 import WonModal from "./WonModal.js";
 import {  matchSolution, evalTokens } from "./functions.js";
-import { Button, Container, Row, Col }  from 'react-bootstrap'
+import { Button, Container, Row, Col, Spinner }  from 'react-bootstrap'
 import { updateScore } from "./actions.js";
 
-const Game =({currUser})=>{
+
+const Game =({currUser, setCurrUserLevel})=>{
     
     const params = useParams();
     const game=getGame(parseInt(params.gameId, 10))
@@ -28,13 +29,15 @@ const Game =({currUser})=>{
             setTokenLeft(evalTokens(currboard))
             if(currboard.every(x=>x>0) && matchSolution(currboard, game.header)){
                 setModalShow(true)
+                
                 if(currUser.level<game.id)
-                    updateScore(currUser.id, game.id)
+                    updateScore(currUser.id, game.id, setCurrUserLevel)
         }   
 }
-    },[currboard, game.header, game.id, currUser.level, currUser.id])
+    },[currboard, game.header, game.id, currUser.level, currUser.id, setCurrUserLevel])
     if(!currboard)
-        return <div>loading</div>
+        return (<div><Spinner animation="border" variant="success" /> </div>)
+        
     return (
         <Container>
             <WonModal show={modalShow} setShow={setModalShow} gid={params.gameId} />

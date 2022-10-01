@@ -1,7 +1,7 @@
-const url='http://localhost:3000/'
-export const login=async (userinfo, setCurrUser, setErrorMsg)=>{
+const url='http://localhost:3000'
+export const login=async (userinfo, setCurrUser, setErrorMsg, setCurrUserLevel)=>{
     try {
-        const response=await fetch(url+"login", {
+        const response=await fetch(url+"/login", {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -18,14 +18,16 @@ export const login=async (userinfo, setCurrUser, setErrorMsg)=>{
         localStorage.setItem('tokenExpiredAt', Date.now()+30*60*1000)
         setCurrUser(data)
         setErrorMsg(null)
+        setCurrUserLevel(data.level)
     } catch (error) {
         setErrorMsg(error)
         setCurrUser(null)
+        setCurrUserLevel(0)
     }
 }
-export const signup=async (userinfo, setCurrUser, setErrorMsg)=>{
+export const signup=async (userinfo, setCurrUser, setErrorMsg, setCurrUserLevel)=>{
     try {
-        const response=await fetch(url+"signup", {
+        const response=await fetch(url+"/signup", {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -39,14 +41,16 @@ export const signup=async (userinfo, setCurrUser, setErrorMsg)=>{
         localStorage.setItem('tokenExpiredAt', Date.now()+30*60*1000)
         setCurrUser(data)
         setErrorMsg(null)
+        setCurrUserLevel(0)
     } catch (error) {
         setErrorMsg(error)
         setCurrUser(null)
+        setCurrUserLevel(0)
     }
 }
-export const logout=async (user_id, setCurrUser)=>{
+export const logout=async (user_id, setCurrUser, setCurrUserLevel)=>{
     try {
-        const response=await fetch(url+"logout", {
+        const response=await fetch(url+"/logout", {
             method: 'DELETE',
             headers: {
                 'Content-Type': 'application/json',
@@ -60,15 +64,16 @@ export const logout=async (user_id, setCurrUser)=>{
         localStorage.removeItem('token')
         localStorage.removeItem('tokenExpiredAt')
         setCurrUser(null)
+        setCurrUserLevel(0)
 
     } catch (error) {
         console.log(error)
     }
 }
-export const getCurrUser=async(setCurrUser, setLoading)=>{
+export const getCurrUser=async(setCurrUser, setCurrUserLevel,setLoading)=>{
     setLoading(true)
     try {
-        const response=await fetch(url+"private/get_current_user",{
+        const response=await fetch(url+"/private/get_current_user",{
             method: 'GET',
             headers: {
                 'Content-Type': 'application/json',
@@ -80,9 +85,11 @@ export const getCurrUser=async(setCurrUser, setLoading)=>{
              throw data.error
         }
         setCurrUser(data)
+        setCurrUserLevel(data.level)
         
     } catch (error) {
         setCurrUser(null)
+        setCurrUserLevel(0)
         localStorage.removeItem('token')
         localStorage.removeItem('tokenExpiredAt')
         
@@ -92,7 +99,7 @@ export const getCurrUser=async(setCurrUser, setLoading)=>{
 }
 export const getAllScore=async(setScores)=>{
     try {
-        const response=await fetch(url+"users")
+        const response=await fetch(url+"/users")
         const data=await response.json()
         if(!response.ok) throw data.error
         setScores(data)
@@ -100,9 +107,9 @@ export const getAllScore=async(setScores)=>{
         console.log(error)
     }
 }
-export const updateScore=async (userId, level)=>{
+export const updateScore=async (userId, level, setCurrUserLevel)=>{
     try{
-        const response=await fetch(`${url}users/${userId}`, {
+        const response=await fetch(`${url}/users/${userId}`, {
             method: 'PATCH',
             headers: {
                 'content-type': 'application/json',
@@ -116,6 +123,7 @@ export const updateScore=async (userId, level)=>{
         const data = await response.json();
         if(!response.ok)
             throw data.error()
+            setCurrUserLevel(level)
     } catch (error){
         console.log(error)
     }

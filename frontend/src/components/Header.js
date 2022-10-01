@@ -1,7 +1,7 @@
 import {Container, Navbar, Nav } from 'react-bootstrap';
 import { logout } from './actions'
 import { Link } from "react-router-dom";
-const Header=({currUser, setCurrUser})=>{
+const Header=({currUser, setCurrUser, setCurrUserLevel})=>{
   
   return (
    <div>
@@ -22,7 +22,7 @@ const Header=({currUser, setCurrUser})=>{
               <Nav.Link href="#gamelist" as={Link} to="/gamelist" >Games</Nav.Link>
               <Nav.Link href="#score" as={Link} to="/score" >Score</Nav.Link>
               <Nav.Link href="#about" as={Link} to="/about"  >About the Game</Nav.Link>
-              {currUser && <Nav.Link href="#logout"  onClick={()=>logout(currUser.id, setCurrUser)}>Logout</Nav.Link> }
+              {currUser && <Nav.Link href="#logout"  onClick={()=>logout(currUser.id, setCurrUser, setCurrUserLevel)}>Logout</Nav.Link> }
           </Nav>
         </Navbar.Collapse>
       </Container>

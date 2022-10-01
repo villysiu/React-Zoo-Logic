@@ -2,8 +2,8 @@ import { Modal, Button } from "react-bootstrap";
 import { gameCount } from "../data/games";
 import { Link } from "react-router-dom";
 const WonModal=({show, setShow, gid})=>{
-    const gamecount=gameCount()
-    
+const gamecount=gameCount()
+const next=parseInt(gid)+1
     return(
         <>
         <Modal show={show} onHide={() => setShow(false)} size="sm" aria-labelledby="contained-modal-title-vcenter" centered >
@@ -20,7 +20,7 @@ const WonModal=({show, setShow, gid})=>{
                     </>
                 :
                 <>
-                  <Button as={Link} variant="success" to={"/games/"+(parseInt(gid)+1)} onClick={e=>setShow(false)} >Next Game</Button>   
+                     <Button as={Link} variant="success" to={`/games/${next}`} onClick={e=>setShow(false)} >Next Game</Button> 
                 </>
             }         
             </Modal.Footer>
