@@ -1,7 +1,7 @@
 # Zoo logic
-
-![](https://github.com/villysiu/React-Zoo-Logic/blob/master/zoologic.gif)
 Zoo Logic is a sudoku like game for kids age 3 and up. Player place the animal tokesns onto corresponding positions on the board, according the the top row and left column requirement.
+![](https://github.com/villysiu/React-Zoo-Logic/blob/master/zoologic.gif)
+![Youtube](https://youtu.be/1akT9nWzub4)
 
 ## Tech Stack
 The backend was created with Rails API and has been fully set up with user authentication, using Devise gem and devise-JWT. The frontend was built with React, JavaScript, and HTML, with the design features being mostly done with React-Bootstrap.
