@@ -10,7 +10,6 @@ export const login=async (userinfo, setCurrUser, setErrorMsg, setCurrUserLevel)=
             body: JSON.stringify(userinfo)
         })
         const data=await response.json()
-        console.log(data)
         if(!response.ok){ 
             throw data.error
         }

@@ -22,7 +22,7 @@ const Header=({currUser, setCurrUser, setCurrUserLevel})=>{
               <Nav.Link href="#gamelist" as={Link} to="/gamelist" >Games</Nav.Link>
               <Nav.Link href="#score" as={Link} to="/score" >Score</Nav.Link>
               <Nav.Link href="#about" as={Link} to="/about"  >About the Game</Nav.Link>
-              {currUser && <Nav.Link href="#logout"  onClick={()=>logout(currUser.id, setCurrUser, setCurrUserLevel)}>Logout</Nav.Link> }
+              {currUser && <Nav.Link href="#logout" as={Link} to='/' onClick={()=>logout(currUser.id, setCurrUser, setCurrUserLevel)}>Logout</Nav.Link> }
           </Nav>
         </Navbar.Collapse>
       </Container>

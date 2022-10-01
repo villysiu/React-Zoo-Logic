@@ -3,7 +3,6 @@ import {Link} from 'react-router-dom'
 import {gameCount} from '../data/games'
 
 const GameList =({currUserLevel})=>{
-    console.log(currUserLevel)
     const gamecount= gameCount() 
        
     const GameLink=({gameId})=>{
